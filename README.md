@@ -11,20 +11,22 @@ Develop branch is the branch where all the devs code gets merged, and then deplo
 Master branch is the main production branch, which is used for the production deployment.
 
 ## Code Flow
-**``feature/bug-fix ``** -> Code is initially pushed on the feature / bug fix branch. Then, A Pull Request is submitted to merge the code on the ``develop`` branch. The code is merged on the ``develop`` branch after the code review is completed.<br><br>
-**``develop``** -> After the code is merged on the ``develop`` branch. The QA is done on the dev site. If the QA gives a go ahead for the changes. A Pull Request is submitted to merge the code on the ``master`` branch.<br><br>
-**``master``** -> The ``master`` branch is the main production branch. After the code is merged here, a deployment is done on the production site.
+### ``feature`` or ``bug-fix``
+Code is initially pushed on the feature / bug fix branch. Then, A Pull Request is submitted to merge the code on the ``develop`` branch. The code is merged on the ``develop`` branch after the code review is completed.
+### ``develop``
+After the code is merged on the ``develop`` branch. The QA is done on the dev site. If the QA gives a go ahead for the changes. A Pull Request is submitted to merge the code on the ``master`` branch.
+### ``master``
+The ``master`` branch is the main production branch. After the code is merged here, a deployment is done on the production site.
 
 ## Code commit
 Commit messages should be short but should explain what the commit is all about.<br>
-For eg. <br>
+For eg. <br><br>
 ![Commit message](/images/commit_message.png)
 
-## Code Reviews
-### PR workflow
+## Code Review
 You need to create a PR to the develop branch.<br><br>
 ![New PR](/images/new_pr.png)
-<br>
+<br><br>
 ![Create PR](/images/create_pr.png)
 <br><br>
 The code reviewer will review the Pull Request, and then based on the review, either the Pull Request will be merged, or you will be asked to update the Pull Request with the required changes.
@@ -32,5 +34,18 @@ The code reviewer will review the Pull Request, and then based on the review, ei
 ## Responsive frontend
 ### Mobile, desktops
 ### Browser support
+Chrome, Safari, Firefox, Edge
 
-##Error logging
+## Error logging
+We use Bugsnag for our Error logging
+```
+const Bugsnag = require('@bugsnag/js');
+
+Bugsnag.start('BUGSNAG_API_KEY');
+
+try {
+  something.risky()
+} catch (e) {
+  Bugsnag.notify(e)
+}
+```
